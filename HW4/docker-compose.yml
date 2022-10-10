@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  postgresTrains:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Shcherbakow_205"
+      POSTGRES_USER: "Shcherbakow_205"
+      POSTGRES_PASSWORD: "Shcherbakow_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/Trains:/docker-entrypoint-initdb.d
+      - ./docker/db/config/Trains/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/db/data/Trains:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+  postgresLibraries:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Shcherbakow_205"
+      POSTGRES_USER: "Shcherbakow_205"
+      POSTGRES_PASSWORD: "Shcherbakow_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/Libraries:/docker-entrypoint-initdb.d
+      - ./docker/db/config/Libraries/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/db/data/Libraries:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  postgresHospital:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Shcherbakow_205"
+      POSTGRES_USER: "Shcherbakow_205"
+      POSTGRES_PASSWORD: "Shcherbakow_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/Hospitals:/docker-entrypoint-initdb.d
+      - ./docker/db/config/Hospitals/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/db/data/Hospitals:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
