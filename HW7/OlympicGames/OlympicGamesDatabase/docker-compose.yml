@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  OlympicGamesDB:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "Shcherbakow_205_Olympic_games"
+      POSTGRES_USER: "Shcherbakow_205"
+      POSTGRES_PASSWORD: "Shcherbakow_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts:/docker-entrypoint-initdb.d
+      - ./docker/db/config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/db/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
